@@ -1,0 +1,11 @@
+*.zip
+*.rar
+**.idea/
+**data/raw/
+**backup/
+*.npz
+*.npy
+dictionary.txt
+**tmp/
+**__pycache__/
+notes.txt
