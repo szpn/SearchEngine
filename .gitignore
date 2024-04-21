@@ -9,3 +9,4 @@ dictionary.txt
 **tmp/
 **__pycache__/
 notes.txt
+/app/engine/data/
