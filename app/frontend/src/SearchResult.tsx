@@ -1,14 +1,14 @@
 import React from 'react';
 import './SearchResult.css';
 
-interface SearchResultProps {
+export interface SearchResultProp {
     title: string;
     link: string;
     description: string;
     similarityScore: number;
 }
 
-const SearchResult: React.FC<SearchResultProps> = ({ title, link, description, similarityScore }) => {
+const SearchResult: React.FC<SearchResultProp> = ({ title, link, description, similarityScore }) => {
     return (
         <div className="search-result">
             <h2 className="title">{title}</h2>
