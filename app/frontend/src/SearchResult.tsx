@@ -12,9 +12,9 @@ const SearchResult: React.FC<SearchResultProp> = ({ title, link, description, si
     return (
         <div className="search-result">
             <h2 className="title">{title}</h2>
+            <p className="similarity">Similarity Score: {similarityScore}</p>
             <a href={link} className="link">{link}</a>
             <p className="description">{description}</p>
-            <p className="similarity">Similarity Score: {similarityScore}</p>
         </div>
     );
 };

@@ -6,16 +6,21 @@
     background-color: #fff;
 }
 
+.search-result *{
+    margin: 0;
+}
+
+.search-result:hover{
+        background-color: #fafafa;
+}
+
 .title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 2rem;
 }
 
 .link {
     color: #007bff;
     text-decoration: none;
-    display: block;
-    margin-bottom: 10px;
 }
 
 .description {
@@ -25,4 +30,5 @@
 .similarity {
     font-style: italic;
     color: #666;
+    margin-bottom: 15px;
 }
