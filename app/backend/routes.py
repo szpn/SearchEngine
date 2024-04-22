@@ -1,4 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, request, jsonify
+
+from app.backend.helpers import SearchEngineHelper
 
 main = Blueprint('main', __name__)
 
@@ -6,6 +8,9 @@ main = Blueprint('main', __name__)
 def index():
     return 'Hello, World!'
 
-@main.route('/about')
-def about():
-    return 'About Page'
+@main.route('/query')
+def query():
+    text_query = request.args.get('query')
+
+    json_result = SearchEngineHelper.search_normal(text_query)
+    return json_result

@@ -1,19 +1,23 @@
+import os
 import numpy as np
 import scipy as sp
 
-from data_processing.TextSanitizer import TextSanitizer
+from app.engine.data_processing.TextSanitizer import TextSanitizer
 
 
 class SearchEngine:
     def __init__(self):
-        self.dictionary_path = "data/dictionary.txt"
-        self.search_matrix_path = "data/term_by_document.npz"
-        self.search_matrix_SVD_pah = "data/US_vh_matrices_1000.npz"
-        self.article_lookup_map_path = "data/article_lookup_map.npy"
+        module_dir = os.path.dirname(os.path.abspath(__file__))
+        self.base_path = module_dir
+        self.dictionary_path = os.path.join(module_dir, "data", "dictionary.txt")
+        self.search_matrix_path = os.path.join(module_dir, "data", "term_by_document.npz")
+        self.search_matrix_SVD_path = os.path.join(module_dir, "data", "US_vh_matrices_1000.npz")
+        self.article_lookup_map_path = os.path.join(module_dir, "data", "article_lookup_map.npy")
+
 
         self.dictionary = self.load_dictionary()
         self.search_matrix = sp.sparse.load_npz(self.search_matrix_path)
-        self.SVD_search_matrix_US, self.SVD_search_matrix_Vh = np.load(self.search_matrix_SVD_pah).values()
+        self.SVD_search_matrix_US, self.SVD_search_matrix_Vh = np.load(self.search_matrix_SVD_path).values()
 
         self.article_lookup_map = np.load(self.article_lookup_map_path)
 
@@ -56,7 +60,6 @@ class SearchEngine:
         return zip(top_articles, top_articles_similarity)
 
     def search(self, input_string, method='NORMAL', max_results=10):
-        print(f"SEARCHING FOR: {input_string}")
         sanitized_user_input = TextSanitizer.sanitize_text(input_string)
         search_vector = self.generate_search_vector(sanitized_user_input)
 
