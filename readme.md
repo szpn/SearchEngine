@@ -30,9 +30,7 @@ The application should be available on http://localhost:5000
 
 ## Demo
 
-
-https://github.com/szpn/SearchEngine/raw/main/demo.mp4
-
+https://github.com/szpn/SearchEngine/assets/41589231/5449207f-4ce3-40c5-99fe-8a7747d1218f
 
 ## Structure overview
 The project is split into 3 parts, the app directory contains three pieces:
