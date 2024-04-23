@@ -26,5 +26,5 @@ class SearchEngineHelper:
 class DescriptionExtractorHelper:
     extractor = DescriptionExtractor()
     @staticmethod
-    def extract(aritcle_name):
-        return DescriptionExtractorHelper.extractor.get_description(aritcle_name)
+    def extract(article_name):
+        return DescriptionExtractorHelper.extractor.get_description(article_name)
