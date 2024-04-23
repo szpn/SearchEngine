@@ -10,6 +10,24 @@ There were several key steps during development of this project:
 - Calculating term by document matrix, and it's low rank approximation
 - Querying the matrix
 
+## Technologies used
+![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
+
+## How to run
+To crawl some articles: \
+`python app/engine/data_generation/wikipedia_crawler_2.py` \
+To process the articles: \
+`python app/engine/data_processing/MainDataProcessor.py` 
+
+If you want to run the console based search engine: \
+`python app/engine/search_engine.py` \
+If you want to run the web based search engine: \
+`python -m flask --app app.backend run` \
+The application should be available on http://localhost:5000
+
 ## Structure overview
 The project is split into 3 parts, the app directory contains three pieces:
 - frontend - contains the react based user interface
@@ -40,5 +58,5 @@ Due to RAM limitations on my PC, the result is saved as (U * S) matrix and Vh ma
 #### MainDataProcessor.py
 Aggregates all processing scripts, executing each to process, index, and vectorize the data.
 
-### Search Engine
+### search_engine.py
 Utilizes the generated term-by-document matrix, dictionary, and article lookup map to query articles. The user-provided query (Q) is normalized, and M * Q is computed, where M represents the term-by-document matrix. The resulting vector contains cosine similarity values for each article. By default, the engine returns the top 10 results with the highest similarity scores.
