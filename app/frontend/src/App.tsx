@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 // @ts-ignore
 import {ReactComponent as SearchIcon} from "./assets/search-icon.svg"
-// @ts-ignore
-import {ReactComponent as SettingsIcon} from "./assets/settings-icon.svg"
 import SearchResult, {SearchResultProp} from './components/SearchResult';
 import Settings from "./components/Settings";
 
@@ -59,14 +57,12 @@ const App: React.FC = () => {
 
     return (
         <>
-
             <div className="settings-box">
                 <Settings onUpdateSettings={updateSettings} settings={settings}/>
             </div>
 
             <div className="App">
                 <div className="container">
-
                     <h1 className={`logo ${isSearching ? 'searching' : ''}`} onClick={handleLogoClick}>Searchify</h1>
 
                     <div className="search-box">
@@ -77,9 +73,11 @@ const App: React.FC = () => {
                             placeholder="Search..."
                             className="search-input"
                         />
+
                         <button onClick={handleSearch} className="search-button">
                             <SearchIcon className="search-icon"/>
                         </button>
+
                     </div>
 
                     <div className="search-results" style={{height: isSearching ? '100%' : '0%'}}>
