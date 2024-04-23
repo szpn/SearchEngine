@@ -1,5 +1,6 @@
 import json
 
+from app.engine.description_extractor import DescriptionExtractor
 from app.engine.search_engine import SearchEngine
 
 class SearchEngineHelper:
@@ -16,8 +17,14 @@ class SearchEngineHelper:
                 "name": article_name,
                 "similarity": similarity,
                 "url": SearchEngineHelper.url_format.format(article=article_name.replace(' ', '_')),
-                "description": "none"
+                "description": DescriptionExtractorHelper.extract(article_name)
             })
 
         json_data = json.dumps(out)
         return json_data
+
+class DescriptionExtractorHelper:
+    extractor = DescriptionExtractor()
+    @staticmethod
+    def extract(aritcle_name):
+        return DescriptionExtractorHelper.extractor.get_description(aritcle_name)
