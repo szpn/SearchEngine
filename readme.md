@@ -28,6 +28,12 @@ If you want to run the web based search engine: \
 `python -m flask --app app.backend run` \
 The application should be available on http://localhost:5000
 
+## Demo
+
+
+https://github.com/szpn/SearchEngine/raw/main/demo.mp4
+
+
 ## Structure overview
 The project is split into 3 parts, the app directory contains three pieces:
 - frontend - contains the react based user interface
