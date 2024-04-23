@@ -1,5 +1,7 @@
 # Seach Engine
 This project is my implementation of a task assigned during the Computation Methods course at AGH UST.
+## Lab report
+[Lab report (with search examples)](report.pdf)
 ## Project description
 The project's goal is to develop a search engine utilizing Natural Language Processing (NLP) techniques to efficiently retrieve relevant documents from a large corpus of text data. Singular Value Decomposition (SVD) is employed for low-rank approximation of the term-by-document matrix to enhance information retrieval and reduce noise.
 
