@@ -1,7 +1,8 @@
 import numpy as np
+import scipy as sp
 from sklearn.decomposition import TruncatedSVD
 from sklearn.preprocessing import normalize
-import scipy as sp
+
 
 class ArticleVectorSVD:
     def __init__(self, input_vector_path, output_vector_path, k):

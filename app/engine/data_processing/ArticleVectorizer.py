@@ -1,7 +1,8 @@
-import numpy as np
-import scipy.sparse as sp
 import os
 import time
+
+import numpy as np
+import scipy.sparse as sp
 
 
 class TextVectorizer:

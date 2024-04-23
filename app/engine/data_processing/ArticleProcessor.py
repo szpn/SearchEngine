@@ -1,5 +1,5 @@
-import os
 import concurrent.futures
+import os
 import time
 
 from TextSanitizer import TextSanitizer

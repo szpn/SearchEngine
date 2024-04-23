@@ -1,5 +1,7 @@
-import numpy as np
 import os
+
+import numpy as np
+
 
 class ArticleLookupMapCreator:
     def __init__(self, input_folder, output_file):

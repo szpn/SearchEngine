@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 // @ts-ignore
 import {ReactComponent as SearchIcon} from "./assets/search-icon.svg"

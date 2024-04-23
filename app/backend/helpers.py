@@ -3,6 +3,7 @@ import json
 from app.engine.description_extractor import DescriptionExtractor
 from app.engine.search_engine import SearchEngine
 
+
 class SearchEngineHelper:
     engine = SearchEngine()
     url_format = 'https://simple.wikipedia.org/wiki/{article}'

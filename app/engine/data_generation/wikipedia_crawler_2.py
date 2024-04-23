@@ -1,18 +1,16 @@
-import wikipedia
-import logging
-import os
 import asyncio
-from concurrent.futures import ThreadPoolExecutor
-import time
+import logging
 import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
+
+import wikipedia
 
 wikipedia.set_lang("simple")
 
-# Configure logging
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
-# Global variables
 visited = set()
 executor = ThreadPoolExecutor(max_workers=100)
 saved_topics_count = 0

@@ -1,7 +1,8 @@
-import os
-from collections import defaultdict
 import concurrent.futures
+import os
 import time
+from collections import defaultdict
+
 
 class DictionaryCreator:
     def __init__(self, input_folder, output_file):
