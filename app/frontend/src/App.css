@@ -79,6 +79,7 @@ body {
 }
 
 .search-results {
+    width: 100%;
     margin-top: 20px;
     overflow-y: auto;
     transition: height 0.5s ease;

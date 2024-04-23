@@ -10,7 +10,7 @@ def index():
 
 @main.route('/query')
 def query():
-    text_query = request.args.get('query')
+    text_query = request.args.get('q')
 
     json_result = SearchEngineHelper.search_normal(text_query)
     return json_result

@@ -2,43 +2,33 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 // @ts-ignore
 import { ReactComponent as SearchIcon } from "./assets/search-icon.svg"
-import SearchResult, { SearchResultProp } from './SearchResult';
+import SearchResult, { SearchResultProp } from './components/SearchResult';
+import Settings from "./components/Settings";
 
 const App: React.FC = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<SearchResultProp[]>([]);
-    const dummySearchResults = [
-        {
-            title: 'Result 1',
-            link: 'https://example.com',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            similarityScore: 0.75,
-        },
-        {
-            title: 'Result 2',
-            link: 'https://example.com',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            similarityScore: 0.12,
-        },
-                {
-            title: 'Result 2',
-            link: 'https://example.com',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            similarityScore: 0.12,
-        },
-                {
-            title: 'Result 2',
-            link: 'https://example.com',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            similarityScore: 0.12,
-        },
-
-    ];
+    const [showSettings, setShowSettings] = useState(false);
+    const [settings, setSettings] = useState({ useSVD: false, maxResults: 10 });
 
     const handleSearch = () => {
         setIsSearching(true);
-        setSearchResults(dummySearchResults);
+        setSearchResults([]);
+
+        fetch(`${process.env.REACT_APP_API_URL}/query?q=${searchTerm}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data: SearchResultProp[]) => {
+                setSearchResults(data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            })
     };
 
     const handleLogoClick = () => {
@@ -49,7 +39,6 @@ const App: React.FC = () => {
     useEffect(() => {
         const handleScroll = (event : WheelEvent) => {
             const searchResultsDiv = document.querySelector('.search-results');
-            console.log("Event details:", event);
             if (searchResultsDiv) {
                 searchResultsDiv.scrollTop += event.deltaY;
             }
@@ -62,36 +51,46 @@ const App: React.FC = () => {
         };
     }, []);
 
-    return (
-        <div className="App">
-            <div className="container">
-                <h1 className={`logo ${isSearching ? 'searching' : ''}`} onClick={handleLogoClick}>Searchify</h1>
-                <div className="search-box">
-                    <input
-                        type="text"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Search..."
-                        className="search-input"
-                    />
-                    <button onClick={handleSearch} className="search-button">
-                        <SearchIcon className="search-icon"/>
-                    </button>
-                </div>
-                <div className="search-results" style={{height: isSearching ? '100%' : '0%'}}>
-                    {searchResults.map((result, index) => (
-                        <SearchResult
-                            key={index}
-                            title={result.title}
-                            link={result.link}
-                            description={result.description}
-                            similarityScore={result.similarityScore}
-                        />
-                    ))}
-                </div>
-            </div>
+    const toggleSettings = () => {
+        setShowSettings(!showSettings);
+    };
+
+    const updateSettings = (newSettings: any) => {
+        setSettings(newSettings);
+    };
+
+  return (
+    <div className="App">
+      <div className="container">
+        <h1 className={`logo ${isSearching ? 'searching' : ''}`} onClick={handleLogoClick}>Searchify</h1>
+        <button className="settings-button" onClick={toggleSettings}>Settings</button>
+        {showSettings && <Settings onClose={toggleSettings} onUpdateSettings={updateSettings} settings={settings}/>}
+        <div className="search-box">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search..."
+            className="search-input"
+          />
+          <button onClick={handleSearch} className="search-button">
+            <SearchIcon className="search-icon"/>
+          </button>
         </div>
-    );
+        <div className="search-results" style={{height: isSearching ? '100%' : '0%'}}>
+          {searchResults.map((result, index) => (
+            <SearchResult
+              key={index}
+              name={result.name}
+              url={result.url}
+              description={result.description}
+              similarity={result.similarity}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default App;

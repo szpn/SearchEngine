@@ -1,0 +1,49 @@
+.settings-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 300px;
+}
+
+.settings-popup h2 {
+  margin-top: 0;
+}
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+
+.setting input[type="checkbox"],
+.setting input[type="text"] {
+  margin-right: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.buttons button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buttons button:hover {
+  background-color: #007bff;
+  color: #fff;
+}

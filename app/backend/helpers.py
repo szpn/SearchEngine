@@ -10,12 +10,12 @@ class SearchEngineHelper:
     def search_normal(text_query):
         results = SearchEngineHelper.engine.search(text_query, method='NORMAL')
         out = []
-        for idx, (article_name, similarity) in enumerate(results, 0):
+        for article_name, similarity in results:
             out.append({
-                "id": idx,
                 "name": article_name,
                 "similarity": similarity,
-                "url": SearchEngineHelper.url_format.format(article=article_name.replace(' ', '_'))
+                "url": SearchEngineHelper.url_format.format(article=article_name.replace(' ', '_')),
+                "description": "none"
             })
 
         json_data = json.dumps(out)
