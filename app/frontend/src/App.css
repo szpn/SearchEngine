@@ -12,8 +12,15 @@ body {
     height: 100vh;
 }
 
+.settings-box{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 .container {
     max-width: 60%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +38,7 @@ body {
 }
 
 .logo.searching{
-    font-size: 8rem;
+    font-size: 4rem;
     margin-bottom: 10px;
     margin-top: 10px;
 }
@@ -78,27 +85,11 @@ body {
     height: 20px;
 }
 
-.settings-button{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-    background-color: #bbb;
-    border-radius: 10px;
-}
-
-.settings-icon {
-    width: 48px;
-    height: 48px;
-}
-
 .search-results {
-    width: 100%;
     margin-top: 20px;
     overflow-y: auto;
     transition: height 0.5s ease;
+    width: 100%;
 }
 
 .search-results::-webkit-scrollbar {

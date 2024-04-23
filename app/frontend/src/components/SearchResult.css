@@ -2,16 +2,17 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background-color: #fff;
 }
 
 .search-result *{
     margin: 0;
+    overflow-wrap: break-word;
 }
 
 .search-result:hover{
-        background-color: #fafafa;
+    background-color: #fafafa;
 }
 
 .title {
