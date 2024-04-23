@@ -38,7 +38,7 @@ const Settings: React.FC<SettingsProps> = ({ onClose, onUpdateSettings, settings
         </div>
         <div className="setting">
             <label>Max results</label>
-            <input type="number" value={maxResults} onChange={(e) => setSetting2(parseInt(e.target.value))}/>
+            <input type="number" min="1" value={maxResults} onChange={(e) => setSetting2(parseInt(e.target.value))}/>
         </div>
         <div className="buttons">
         <button onClick={handleSave}>Save</button>

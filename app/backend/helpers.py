@@ -7,8 +7,9 @@ class SearchEngineHelper:
     url_format = 'https://simple.wikipedia.org/wiki/{article}'
 
     @staticmethod
-    def search_normal(text_query):
-        results = SearchEngineHelper.engine.search(text_query, method='NORMAL')
+    def search_normal(text_query, use_svd=False, max_results=10):
+        results = SearchEngineHelper.engine.search(text_query, method='SVD' if use_svd else 'NORMAL', max_results=max_results)
+
         out = []
         for article_name, similarity in results:
             out.append({

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 // @ts-ignore
 import { ReactComponent as SearchIcon } from "./assets/search-icon.svg"
+// @ts-ignore
+import {ReactComponent as SettingsIcon} from "./assets/settings-icon.svg"
 import SearchResult, { SearchResultProp } from './components/SearchResult';
 import Settings from "./components/Settings";
 
@@ -16,7 +18,7 @@ const App: React.FC = () => {
         setIsSearching(true);
         setSearchResults([]);
 
-        fetch(`${process.env.REACT_APP_API_URL}/query?q=${searchTerm}`)
+        fetch(`${process.env.REACT_APP_API_URL}/query?q=${searchTerm}&svd=${settings.useSVD}&max_results=${settings.maxResults}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -60,36 +62,39 @@ const App: React.FC = () => {
     };
 
   return (
-    <div className="App">
-      <div className="container">
-        <h1 className={`logo ${isSearching ? 'searching' : ''}`} onClick={handleLogoClick}>Searchify</h1>
-        <button className="settings-button" onClick={toggleSettings}>Settings</button>
-        {showSettings && <Settings onClose={toggleSettings} onUpdateSettings={updateSettings} settings={settings}/>}
-        <div className="search-box">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search..."
-            className="search-input"
-          />
-          <button onClick={handleSearch} className="search-button">
-            <SearchIcon className="search-icon"/>
-          </button>
-        </div>
-        <div className="search-results" style={{height: isSearching ? '100%' : '0%'}}>
-          {searchResults.map((result, index) => (
-            <SearchResult
-              key={index}
-              name={result.name}
-              url={result.url}
-              description={result.description}
-              similarity={result.similarity}
-            />
-          ))}
-        </div>
+      <div className="App">
+          <div className="container">
+              <h1 className={`logo ${isSearching ? 'searching' : ''}`} onClick={handleLogoClick}>Searchify</h1>
+              <button className="settings-button" onClick={toggleSettings}>
+                  <SettingsIcon className="settings-icon"/>
+              </button>
+              {showSettings &&
+                  <Settings onClose={toggleSettings} onUpdateSettings={updateSettings} settings={settings}/>}
+              <div className="search-box">
+                  <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Search..."
+                      className="search-input"
+                  />
+                  <button onClick={handleSearch} className="search-button">
+                      <SearchIcon className="search-icon"/>
+                  </button>
+              </div>
+              <div className="search-results" style={{height: isSearching ? '100%' : '0%'}}>
+                  {searchResults.map((result, index) => (
+                      <SearchResult
+                          key={index}
+                          name={result.name}
+                          url={result.url}
+                          description={result.description}
+                          similarity={result.similarity}
+                      />
+                  ))}
+              </div>
+          </div>
       </div>
-    </div>
   );
 };
 

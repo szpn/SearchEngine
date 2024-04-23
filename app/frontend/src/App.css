@@ -78,6 +78,22 @@ body {
     height: 20px;
 }
 
+.settings-button{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    background-color: #bbb;
+    border-radius: 10px;
+}
+
+.settings-icon {
+    width: 48px;
+    height: 48px;
+}
+
 .search-results {
     width: 100%;
     margin-top: 20px;
