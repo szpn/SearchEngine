@@ -12,6 +12,12 @@ def serve_react_app():
 def serve_static(path):
     return send_from_directory('../frontend/build/static', path)
 
+
+@main.route('/engine_statistics')
+def engine_statistics():
+    counts = SearchEngineHelper.get_articles_and_dictionary_count()
+    return jsonify(counts)
+
 @main.route('/query')
 def query():
     text_query = request.args.get('q')

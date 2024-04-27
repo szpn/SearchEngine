@@ -30,6 +30,11 @@ class SearchEngine:
                 dictionary[word] = idx
         return dictionary
 
+    def get_article_count(self):
+        return self.search_matrix.shape[0]
+
+    def get_dictionary_count(self):
+        return self.search_matrix.shape[1]
 
     def generate_search_vector(self, input):
         search_vector = np.zeros(len(self.dictionary))

@@ -6,7 +6,6 @@ import './Settings.css';
 
 
 interface SettingsProps {
-
     onUpdateSettings: (newSettings: {
         useSVD: boolean;
         maxResults: number
