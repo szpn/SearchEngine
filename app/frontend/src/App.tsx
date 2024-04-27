@@ -3,12 +3,14 @@ import './App.css';
 // @ts-ignore
 import {ReactComponent as SearchIcon} from "./assets/search-icon.svg"
 import SearchResult, {SearchResultProp} from './components/SearchResult';
-import Settings from "./components/Settings";
+import Settings from "./components/sidebar/Settings";
+import Statistics, {SearchStatisticsData} from "./components/sidebar/Statistics";
 
 const App: React.FC = () => {
     const [isSearching, setIsSearching] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState<SearchResultProp[]>([]);
+    const [searchStatistics, setSearchStatistics] = useState<SearchStatisticsData>({creation_time: 0, search_time: 0});
     const [settings, setSettings] = useState({useSVD: true, maxResults: 10});
 
     const handleSearch = () => {
@@ -22,8 +24,10 @@ const App: React.FC = () => {
                 }
                 return response.json();
             })
-            .then((data: SearchResultProp[]) => {
-                setSearchResults(data);
+            .then((data) => {
+                setSearchResults(data['results']);
+                setSearchStatistics(data['statistics']);
+                console.log(searchStatistics);
             })
             .catch(error => {
                 console.error('There was a problem with the fetch operation:', error);
@@ -50,15 +54,15 @@ const App: React.FC = () => {
         };
     }, []);
 
-
     const updateSettings = (newSettings: any) => {
         setSettings(newSettings);
     };
 
     return (
         <>
-            <div className="settings-box">
+            <div className="sidebar">
                 <Settings onUpdateSettings={updateSettings} settings={settings}/>
+                <Statistics data={searchStatistics}/>
             </div>
 
             <div className="App">

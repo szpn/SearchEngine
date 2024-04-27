@@ -1,4 +1,4 @@
-from flask import Blueprint, request, send_from_directory
+from flask import Blueprint, request, send_from_directory, jsonify
 
 from app.backend.helpers import SearchEngineHelper
 
@@ -18,5 +18,7 @@ def query():
     use_svd = request.args.get('svd') == 'true'
     max_results = int(request.args.get('max_results'))
 
-    json_result = SearchEngineHelper.search_normal(text_query, use_svd, max_results)
-    return json_result
+    results_dict, times_dict = SearchEngineHelper.search_normal(text_query, use_svd, max_results)
+    search_statistics = {"statistics": times_dict}
+    results_dict.update(search_statistics)
+    return jsonify(results_dict)

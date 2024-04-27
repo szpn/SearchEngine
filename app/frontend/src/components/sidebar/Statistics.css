@@ -1,0 +1,27 @@
+.statistics-section {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#general-statistics {
+    background-color: #f0f0f0;
+}
+
+#time-statistics {
+    background-color: #e0e0e0;
+}
+
+.statistic-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.statistic-label {
+    font-weight: bold;
+}
+
+.statistic-value {
+    color: #555;
+}

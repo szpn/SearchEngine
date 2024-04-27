@@ -1,0 +1,10 @@
+.setting {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom:10px;
+}
+
+.setting input[type="checkbox"],
+.setting input[type="number"] {
+    margin-right: 0;
+}

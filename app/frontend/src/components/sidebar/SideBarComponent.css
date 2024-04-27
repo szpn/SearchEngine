@@ -1,9 +1,9 @@
-.settings-container {
+.sidebarcomponent-container {
     display: flex;
-    justify-content: flex-end;
+    margin-bottom: 10px;
 }
 
-.settings-button {
+.sidebarcomponent-button {
     display: inline-block;
     border: none;
     padding: 5px;
@@ -12,16 +12,19 @@
     border-radius: 10px;
 }
 
-.settings-icon {
+.sidebarcomponent-icon {
     width: 48px;
     height: 48px;
 }
 
-.settings-popup-container {
+.sidebarcomponent-popup-container {
     display: none;
 }
+.sidebarcomponent-title{
+    margin-top: 0;
+}
 
-.settings-popup {
+.sidebarcomponent-popup {
     background-color: #fff;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -30,20 +33,6 @@
     width: 300px;
 }
 
-.settings-popup h2 {
-    margin-top: 0;
-}
-
-.setting {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.setting input[type="checkbox"],
-.setting input[type="number"] {
-    margin-right: 10px;
-}
 
 .buttons {
     display: flex;
